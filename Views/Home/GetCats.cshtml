@@ -1,0 +1,41 @@
+﻿@using FDMC.Models
+@model IEnumerable<FDMC.Models.CatDto>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Breed</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+
+            var basePath = Context.Request.Host.ToString()+"/";
+
+
+
+             // Url.Content("~/Images/11.jpg");
+
+            foreach (var cat in Model)
+            {
+                string imagePath = (String.Format("{0}{1}", Url.Content("~/"), @cat.ImagePath));
+                <tr>
+                    <td>@cat.Name</td>
+                    <td>@cat.Age</td>
+                    <td>@cat.Breed</td>
+                    <td><img src="@imagePath" style="max-height:100px; max-width:100px" /></td>
+
+             
+                </tr>
+
+            }
+        }
+
+    </tbody>
+</table>
+
